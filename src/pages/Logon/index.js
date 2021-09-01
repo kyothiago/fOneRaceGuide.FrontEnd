@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
@@ -10,7 +9,7 @@ import api from '../../services/api';
 
 export default function Logon(){
     
-    const [id, setId] = useState('');
+    const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
     const history = useHistory();
@@ -19,9 +18,9 @@ export default function Logon(){
         e.preventDefault();
 
         try {
-            const response = await api.post('sessions', { id });
+            const response = await api.post('sessions', { login });
 
-            localStorage.setItem('usuarioId', id);
+            localStorage.setItem('usuarioLogin', setLogin);
             localStorage.setItem('senha', response.data.name);
 
             history.push('/profile');
@@ -36,16 +35,16 @@ export default function Logon(){
         <div className="logon-container">
             <section className="form">
             <div className = "imagem">
-            <img src={f1Logo} alt="F1"/>
+            <img src={ f1Logo } alt="F1"/>
             </div>
             <div className = "formulario">
                 <form onSubmit={handleLogin}> 
-                    <h1>Faça seu logon</h1>
+                    <h1>Faça seu login</h1>
 
                     <input 
-                        placeholder="Sua ID" 
-                        name={id}
-                        onChange={ e => setId(e.target.value)}
+                        placeholder="Seu Login" 
+                        name={login}
+                        onChange={ e => setLogin(e.target.value)}
                     />
                     <input 
                         placeholder="Sua Senha" 
@@ -65,43 +64,3 @@ export default function Logon(){
         </div>
     );
 }
-=======
-import React, { useStates } from 'react';
-import { Link, useHistory } from "react-router-dom";
-
-
-export default function Logon(){
-    const [user, setUser] = useState("");
-    const [password, setPassword] = useState("");
-
-    try {
-
-    } catch (err) {
-        alert(`Algo deu errado: ${err}`);
-      }
-    }
-
-    return (
-        <div>
-            <section>
-                <form onSubmit={}>
-                    <h1> Faça o seu Logon</h1>
-                    <input
-                        placeholder="Seu login"
-                        value={user}
-                    />
-        
-                    <input
-                        placeholder="Sua senha"
-                        value={password}
-                    />
-
-                    <button className="button" type="submit">
-                    Entrar
-                    </button>
-                </form>
-            </section>
-        </div>
-    )
-}
->>>>>>> 548b3cf36fc270a16002d6793e1cfd7acd2451aa

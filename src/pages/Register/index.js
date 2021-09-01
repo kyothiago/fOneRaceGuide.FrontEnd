@@ -40,7 +40,7 @@ export default function Register(){
                     </Link>
                 </section>
 
-                <form onSubmit={handleRegister}>
+                <form onSubmit={ handleRegister }>
                 <input 
                         placeholder="Login" 
                         name={login}
