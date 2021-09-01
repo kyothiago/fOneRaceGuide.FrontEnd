@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
@@ -64,3 +65,43 @@ export default function Logon(){
         </div>
     );
 }
+=======
+import React, { useStates } from 'react';
+import { Link, useHistory } from "react-router-dom";
+
+
+export default function Logon(){
+    const [user, setUser] = useState("");
+    const [password, setPassword] = useState("");
+
+    try {
+
+    } catch (err) {
+        alert(`Algo deu errado: ${err}`);
+      }
+    }
+
+    return (
+        <div>
+            <section>
+                <form onSubmit={}>
+                    <h1> Faça o seu Logon</h1>
+                    <input
+                        placeholder="Seu login"
+                        value={user}
+                    />
+        
+                    <input
+                        placeholder="Sua senha"
+                        value={password}
+                    />
+
+                    <button className="button" type="submit">
+                    Entrar
+                    </button>
+                </form>
+            </section>
+        </div>
+    )
+}
+>>>>>>> 548b3cf36fc270a16002d6793e1cfd7acd2451aa
