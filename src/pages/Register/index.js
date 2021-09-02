@@ -22,7 +22,7 @@ export default function Register() {
       email,
       celular,
       login,
-      password,
+      password
     };
 
     try {
