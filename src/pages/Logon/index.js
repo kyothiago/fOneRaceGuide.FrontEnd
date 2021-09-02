@@ -27,7 +27,6 @@ export default function Logon(){
         } catch (error) {
             alert('Falha no login, tente novamente');
         }
-
     }
     
     return (
