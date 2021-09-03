@@ -16,16 +16,16 @@ export default function Logon(){
 
     async function handleLogin(e){
         e.preventDefault();
-
+    const data = 
+    {
+        login,
+        password
+    }
         try {
-            const response = await api.post('sessions', { login });
-
-            localStorage.setItem('usuarioLogin', setLogin);
-            localStorage.setItem('senha', response.data.name);
-
-            history.push('/profile');
+            const response = await api.post('/user/authenticate', data);
+            console.log(response);
         } catch (error) {
-            alert('Falha no login, tente novamente');
+            alert('Falha no login, tente novamente.');
         }
     }
     
