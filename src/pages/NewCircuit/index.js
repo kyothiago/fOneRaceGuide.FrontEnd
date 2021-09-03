@@ -13,6 +13,7 @@ export default function RegisterCircuit() {
   const [country, setCountry] = useState("");
   const [time, setTime] = useState("");
   const [urlCircuit, setUrlCircuit] = useState("");
+  const [photo, setPhoto] = useState("");
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -22,7 +23,8 @@ export default function RegisterCircuit() {
       local,
       country,
       time,
-      urlCircuit
+      urlCircuit,
+      photo
     };
 
     try {
@@ -73,20 +75,22 @@ export default function RegisterCircuit() {
             name={time}
             onChange={(e) => setTime(e.target.value)}
           />
-
-          <div className="input-group">
-            <input
+          <input
               placeholder="URl do Circuito"
               name={urlCircuit}
               
               onChange={(e) => setUrlCircuit(e.target.value)}
-            />
-          </div>
-          <button className="button" type="submit">
-            Cadastrar
-          </button>
+          />
+          <input
+              type ="file"
+              name={photo}
+              onChange={(e) => setPhoto(e.target.files)}
+          />
           <button className="buttonCancel" type="submit" onClick = {() => history.goBack()}>
             Cancelar
+          </button>
+          <button className="button" type="submit">
+            Cadastrar
           </button>
         </form>
       </div>

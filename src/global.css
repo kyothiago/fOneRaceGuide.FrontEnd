@@ -66,6 +66,23 @@ form textarea{
     border: 1px solid;
     border-color: #ff1801;
 }
+.buttonCancel {
+    width: 45%;
+    height: 60px;
+    background: #fff;
+    border: 0;
+    border-radius: 8px;
+    color: #ff1801;
+    font-weight: 700;
+    margin-top: 16px;
+    margin-right: 1vw;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    transition: filter 0.2;
+}
 
 .back-link {
     display: flex;

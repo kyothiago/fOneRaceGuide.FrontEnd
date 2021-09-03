@@ -4,8 +4,8 @@ import Home from './pages/Home';
 
 import Logon from './pages/Logon';
 import Register from './pages/Register';
-//import UploadCircuito from './pages/Upload';
-//import NewCircuit from './pages/NewCircuit';
+import UploadCircuito from './pages/Upload';
+import RegisterCircuit from './pages/NewCircuit';
 
 export default function Routes(){
     return(
@@ -14,8 +14,8 @@ export default function Routes(){
                 <Route path="/" exact component={Logon} />
                 <Route path="/register" component={Register} />
                 <Route path="/home" component={Home} />
-               {/*  //<Route path="/newCircuit" component={NewCircuit} /> */}
-                {/* <Route path="/circuit/upload" component={UploadCircuito} /> */}
+                <Route path="/newCircuit" component={RegisterCircuit} />
+                <Route path="/circuitUpload" component={UploadCircuito} />
             </Switch>
         </BrowserRouter>
     );
