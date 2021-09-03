@@ -59,6 +59,13 @@
     position: relative;
 }
 
+.profile-container ul li .buttonUpdate {
+    position: absolute;
+    right: 50px;
+    top: 24px;
+    border: 0;
+}
+
 .profile-container ul li button{
     position: absolute;
     right: 24px;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
+import { FiEdit, FiPower, FiTrash2 } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -34,7 +34,7 @@ export default function Home(){
             setCircuits(response.data);
         })
     }, []);
- 
+    
     async function handleDeleteCircuit(id){
         try {
             await axios.delete(`/circuit/delete/${id}`
@@ -51,7 +51,6 @@ export default function Home(){
 
     function handleLogout(){
         localStorage.clear();
-
         history.push('/');
     }
 
@@ -63,7 +62,7 @@ export default function Home(){
                 <Link className="button" to="/user/update/${id}">
                     Atualizar Perfil
                 </Link>
-                <Link className="button" to="/circuits/new">
+                <Link className="button" to="/newCircuit">
                     Cadastrar novo circuito
                 </Link>
                 <button onClick={handleLogout} type="button">
@@ -75,7 +74,7 @@ export default function Home(){
 
             <ul>
                 {circuits.map(circuit => (
-                    <li key={circuit.id}>
+                    <li key={circuit.circuitoId}>
                         <strong>Nome do Circuito:</strong>
                         <p>{circuit.circuitoNome}</p>
 
@@ -90,14 +89,15 @@ export default function Home(){
 
                         <strong>Foto do Circuito:</strong>
                         <p>{circuit.circuitoFoto}</p>
-
-                        <button onClick={() => handleDeleteCircuit(circuit.id)} type="button">
+                        <button className="buttonUpdate" type="button" onClick={()=>{{var id = circuit.circuitoId} history.push(`circuitUpload/${id}`)}} > 
+                        <FiEdit size={20} color="#a8a8b3" />
+                        </button>
+                        <button onClick={() => handleDeleteCircuit(circuit.circuitoId)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3" />
                         </button>
                     </li>
                 ))}
             </ul>
-
         </div>
     );
 }
