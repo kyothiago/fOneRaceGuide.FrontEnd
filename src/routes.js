@@ -7,7 +7,7 @@ import Register from './pages/Register';
 import UploadCircuito from './pages/Upload';
 import RegisterCircuit from './pages/NewCircuit';
 import UpdateProfile from './pages/UpdateProfile';
-
+import Relatorio from './pages/Relatorio';
 
 export default function Routes(){
     return(
@@ -18,7 +18,8 @@ export default function Routes(){
                 <Route path="/home" component={Home} />
                 <Route path="/newCircuit" component={RegisterCircuit} />
                 <Route path="/circuitUpload" component={UploadCircuito} />
-                <Route path="/UpdateProfile" component={UpdateProfile} />
+                <Route path="/updateProfile" component={UpdateProfile} />
+                <Route path="/relatorio" component= {Relatorio} />
             </Switch>
         </BrowserRouter>
     );

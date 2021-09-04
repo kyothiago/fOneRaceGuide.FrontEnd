@@ -15,27 +15,28 @@ export default function RegisterCircuit() {
   const [urlCircuit, setUrlCircuit] = useState("");
   const [photo, setPhoto] = useState("");
 
-  async function handleRegister(e) {
-    e.preventDefault();
+  async function handleRegister(e) { e.preventDefault(); 
+    const uploadPhoto = new FormData(); 
+    uploadPhoto.append('nameCircuit', nameCircuit)
+    uploadPhoto.append('local', local)
+    uploadPhoto.append('country', country)
+    uploadPhoto.append('time', time)
+    uploadPhoto.append('urlCircuit', urlCircuit)
+    uploadPhoto.append('photo', photo) 
 
-    const data = {
-      nameCircuit,
-      local,
-      country,
-      time,
-      urlCircuit,
-      photo
-    };
+    try { 
+        const response = await api.post("/circuit/add", uploadPhoto, {
+          headers: {
+          "Content-Type": `multipart/form-data; boundary=${uploadPhoto._boundary}`,
+          }
+        }); 
+        alert("salvo com sucesso", response);
+         history.push("/home"); 
+    } 
+    catch (error) { console.log(error); 
+    } 
+}
 
-    try {
-      const response = await api.post("/circuit/add", data);
-      alert("salvo com sucesso", response);
-
-      history.push("/home");
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
   return (
     <div className="register-container">
@@ -53,7 +54,7 @@ export default function RegisterCircuit() {
           </Link>
         </section>
 
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleRegister} enctype="multipart/form-data">
           <input
             placeholder="Nome do Circuito"
             name={nameCircuit}
@@ -83,7 +84,7 @@ export default function RegisterCircuit() {
           />
           <input
               type ="file"
-              name="photo"
+              name={photo}
               onChange={(e) => setPhoto(e.target.files)}
           />
           <button className="buttonCancel" type="submit" onClick = {() => history.goBack()}>
@@ -95,5 +96,5 @@ export default function RegisterCircuit() {
         </form>
       </div>
     </div>
-  );
+  )
 }

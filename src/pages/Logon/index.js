@@ -6,7 +6,6 @@ import './styles.css';
 
 import f1Logo from "../../assets/f1-new-logo.png";
 import api from '../../services/api';
-import axios from 'axios';
 
 
 export default function Logon(){
@@ -28,13 +27,12 @@ export default function Logon(){
         password
     }
     try{
-        const response = await axios.post('http://localhost:3001/user/authenticate', {
-        login,
-        password
-    }
-    )
+        const response = await api.post('/user/authenticate', data)
     var token = response.data.token
     var refreshToken = response.data.refreshToken
+    var id = response.data.id
+    localStorage.setItem("login", login)
+    localStorage.setItem("id", id)
     localStorage.setItem("token", token)
     localStorage.setItem("refreshToken", refreshToken)
     axiosConfig.headers.Authorization = "x-access-token" + localStorage.getItem("token", "refreshToken") 

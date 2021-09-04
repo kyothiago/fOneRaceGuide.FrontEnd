@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiEdit, FiPower, FiTrash2 } from 'react-icons/fi';
-
+import PersonIcon from '@material-ui/icons/Person';
 import api from '../../services/api';
 
 import './styles.css';
@@ -15,8 +15,8 @@ export default function Home(){
     
     const [] = useState([]);
 
-    const userLogin = localStorage.getItem('Login');
-    const userName = localStorage.getItem('Name');
+    const userLogin = localStorage.getItem('login');
+    const userId = localStorage.getItem('id');
 
 /*     useEffect(() => {
         axios.get('profile', {
@@ -37,7 +37,7 @@ export default function Home(){
     
     async function handleDeleteCircuit(id){
         try {
-            await axios.delete(`/circuit/delete/${id}`
+            await api.delete(`/circuit/delete/${id}`
              /*    headers: {
                     Authorization: userLogin,
                 } */
@@ -58,10 +58,10 @@ export default function Home(){
         <div className="profile-container">
             <header>
                 <img src={logoImg} alt="F1 Race Guide"/>
-                <span>Bem Vindo(a), {userName}</span>
-                <Link className="button" to="/user/update/${id}">
-                    Atualizar Perfil
-                </Link>
+                <span>Bem Vindo(a), {userLogin}</span>
+                <button className="buttonProfile" onClick={()=>{{var userid = userId} history.push(`updateProfile/${userid}`)}}>
+                    <PersonIcon />
+                </button>
                 <Link className="button" to="/newCircuit">
                     Cadastrar novo circuito
                 </Link>
