@@ -83,7 +83,7 @@ export default function RegisterCircuit() {
           />
           <input
               type ="file"
-              name={photo}
+              name="photo"
               onChange={(e) => setPhoto(e.target.files)}
           />
           <button className="buttonCancel" type="submit" onClick = {() => history.goBack()}>
