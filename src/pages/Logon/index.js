@@ -6,9 +6,15 @@ import './styles.css';
 
 import f1Logo from "../../assets/f1-new-logo.png";
 import api from '../../services/api';
+import axios from 'axios';
+
 
 export default function Logon(){
-    
+    var axiosConfig = {
+        headers:{
+        Authorization: "x-access-token" + localStorage.getItem("token", "refreshToken")
+        }
+    }
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,13 +27,23 @@ export default function Logon(){
         login,
         password
     }
-        try {
-            const response = await api.post('/user/authenticate', data);
-            console.log(response);
-        } catch (error) {
-            alert('Falha no login, tente novamente.');
-        }
+    try{
+        const response = await axios.post('http://localhost:3001/user/authenticate', {
+        login,
+        password
     }
+    )
+    var token = response.data.token
+    var refreshToken = response.data.refreshToken
+    localStorage.setItem("token", token)
+    localStorage.setItem("refreshToken", refreshToken)
+    axiosConfig.headers.Authorization = "x-access-token" + localStorage.getItem("token", "refreshToken") 
+    history.push("/home")
+}
+    catch(e){
+        alert("Falha ao autenticar usuário")
+    }
+}
     
     return (
             
