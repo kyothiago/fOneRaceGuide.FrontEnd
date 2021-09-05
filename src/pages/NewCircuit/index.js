@@ -13,30 +13,31 @@ export default function RegisterCircuit() {
   const [country, setCountry] = useState("");
   const [time, setTime] = useState("");
   const [urlCircuit, setUrlCircuit] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState([]);
 
-  async function handleRegister(e) { e.preventDefault(); 
-    const uploadPhoto = new FormData(); 
-    uploadPhoto.append('nameCircuit', nameCircuit)
-    uploadPhoto.append('local', local)
-    uploadPhoto.append('country', country)
-    uploadPhoto.append('time', time)
-    uploadPhoto.append('urlCircuit', urlCircuit)
-    uploadPhoto.append('photo', photo) 
+  async function handleRegister(e) {
+    e.preventDefault();
 
-    try { 
-        const response = await api.post("/circuit/add", uploadPhoto, {
-          headers: {
+    const uploadPhoto = new FormData();
+    uploadPhoto.append("nameCircuit", nameCircuit);
+    uploadPhoto.append("local", local);
+    uploadPhoto.append("country", country);
+    uploadPhoto.append("time", time);
+    uploadPhoto.append("urlCircuit", urlCircuit);
+    uploadPhoto.append("photo", photo[0]);
+
+    try {
+      const response = await api.post("/circuit/add", uploadPhoto, {
+        headers: {
           "Content-Type": `multipart/form-data; boundary=${uploadPhoto._boundary}`,
-          }
-        }); 
-        alert("salvo com sucesso", response);
-         history.push("/home"); 
-    } 
-    catch (error) { console.log(error); 
-    } 
-}
-
+        },
+      });
+      alert("salvo com sucesso", response);
+      history.push("/home");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="register-container">
@@ -44,8 +45,8 @@ export default function RegisterCircuit() {
         <section>
           <h1>Cadastrar Novo Circuito</h1>
           <p>
-            Descreva o circuito inserindo um título,localização, país e 
-            data da corrida.
+            Descreva o circuito inserindo um título,localização, país e data da
+            corrida.
           </p>
 
           <Link className="back-link" to="/home">
@@ -66,7 +67,6 @@ export default function RegisterCircuit() {
             onChange={(e) => setLocal(e.target.value)}
           />
           <input
-            
             placeholder="País"
             name={country}
             onChange={(e) => setCountry(e.target.value)}
@@ -77,17 +77,20 @@ export default function RegisterCircuit() {
             onChange={(e) => setTime(e.target.value)}
           />
           <input
-              placeholder="URl do Circuito"
-              name={urlCircuit}
-              
-              onChange={(e) => setUrlCircuit(e.target.value)}
+            placeholder="URl do Circuito"
+            name={urlCircuit}
+            onChange={(e) => setUrlCircuit(e.target.value)}
           />
           <input
-              type ="file"
-              name={photo}
-              onChange={(e) => setPhoto(e.target.files)}
+            type="file"
+            name={photo}
+            onChange={(e) => setPhoto(e.target.files)}
           />
-          <button className="buttonCancel" type="submit" onClick = {() => history.goBack()}>
+          <button
+            className="buttonCancel"
+            type="submit"
+            onClick={() => history.goBack()}
+          >
             Cancelar
           </button>
           <button className="button" type="submit">
@@ -96,5 +99,5 @@ export default function RegisterCircuit() {
         </form>
       </div>
     </div>
-  )
+  );
 }
