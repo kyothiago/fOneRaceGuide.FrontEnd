@@ -15,8 +15,8 @@ export default function Home() {
 
   const [] = useState([]);
 
-  const userLogin = localStorage.getItem("login");
-  const userId = localStorage.getItem("id");
+  const userLogin = localStorage.getItem("@formulaone:login");
+  const userId = localStorage.getItem("@formulaone:id");
 
   /*     useEffect(() => {
         axios.get('profile', {
@@ -62,10 +62,7 @@ export default function Home() {
         <button
           className="buttonProfile"
           onClick={() => {
-            {
-              var userid = userId;
-            }
-            history.push(`updateProfile/${userid}`);
+            history.push(`updateProfile/${userId}`);
           }}
         >
           <PersonIcon />
@@ -100,12 +97,15 @@ export default function Home() {
             <button
               className="buttonUpdate"
               type="button"
-              onClick={() => {
-                {
-                  var id = circuit.circuitoId;
+              onClick={
+                () => {
+                  history.push("/UpdateCircuito/" + circuit.circuitoId);
                 }
-                history.push(`circuitUpload/${id}`);
-              }}
+                // {
+                //   var id = circuit.circuitoId;
+                // }
+                // history.push(`circuitUpload/${id}`);
+              }
             >
               <FiEdit size={20} color="#a8a8b3" />
             </button>

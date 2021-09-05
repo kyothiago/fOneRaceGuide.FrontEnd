@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import api from "../../services/api";
 
-export default function UploadCircuito() {
+export default function UpdateCircuito(props) {
+  const { id } = props.match.params;
+  console.log(id);
+
   const history = useHistory();
   const [nameCircuit, setNameCircuit] = useState("");
   const [local, setLocal] = useState("");
@@ -21,17 +25,17 @@ export default function UploadCircuito() {
       country,
       time,
       urlCircuit,
-      photo
+      photo,
     };
 
-   /*  try {
-      const response = await api.post(`/upload/${id}`, data);
-      alert("salvo com sucesso", response);
+    // try {
+    //   const response = await api.post(`/upload/${id}`, data);
+    //   alert("salvo com sucesso", response);
 
-      history.push("/home");
-    } catch (error) {
-      console.log(error);
-    } */
+    //   history.push("/home");
+    // } catch (error) {
+    //   console.log(error);
+    // }
   }
 
   return (
@@ -39,9 +43,7 @@ export default function UploadCircuito() {
       <div className="content">
         <section>
           <h1>Atualizar Circuito</h1>
-          <p>
-            Faça as alterações necessárias no circuito
-          </p>
+          <p>Faça as alterações necessárias no circuito</p>
 
           <Link className="back-link" to="/home">
             <FiArrowLeft size={16} color="#FF1801" />
@@ -61,7 +63,6 @@ export default function UploadCircuito() {
             onChange={(e) => setLocal(e.target.value)}
           />
           <input
-            
             placeholder="País"
             name={country}
             onChange={(e) => setCountry(e.target.value)}
@@ -71,18 +72,21 @@ export default function UploadCircuito() {
             name={time}
             onChange={(e) => setTime(e.target.value)}
           />
-            <input
-              placeholder="URl do Circuito"
-              name={urlCircuit}
-              
-              onChange={(e) => setUrlCircuit(e.target.value)}
-            />
-            <input
-              type="file"
-              name={photo}
-              onChange={(e) => setPhoto(e.target.files)}
-            />
-          <button className="buttonCancel" type="submit" onClick = {() => history.goBack()}>
+          <input
+            placeholder="URl do Circuito"
+            name={urlCircuit}
+            onChange={(e) => setUrlCircuit(e.target.value)}
+          />
+          <input
+            type="file"
+            name={photo}
+            onChange={(e) => setPhoto(e.target.files)}
+          />
+          <button
+            className="buttonCancel"
+            type="submit"
+            onClick={() => history.goBack()}
+          >
             Cancelar
           </button>
           <button className="button" type="submit">

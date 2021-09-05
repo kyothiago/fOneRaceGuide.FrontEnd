@@ -6,7 +6,11 @@ import api from "../../services/api";
 
 import "./styles.css";
 
-export default function UpdateProfile() {
+export default function UpdateProfile(props) {
+  const { id } = props.match.params;
+
+  console.log(id);
+
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,7 +26,7 @@ export default function UpdateProfile() {
       email,
       celular,
       login,
-      password
+      password,
     };
 
     try {
@@ -40,9 +44,7 @@ export default function UpdateProfile() {
       <div className="content">
         <section>
           <h1>Atualizar Dados Cadastrais</h1>
-          <p>
-            Atualize suas informações pessoais.
-          </p>
+          <p>Atualize suas informações pessoais.</p>
 
           <Link className="back-link" to="/home">
             <FiArrowLeft size={16} color="#FF1801" />
@@ -78,7 +80,11 @@ export default function UpdateProfile() {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="buttonCancel" type="submit" onClick = {() => history.goBack()}>
+          <button
+            className="buttonCancel"
+            type="submit"
+            onClick={() => history.goBack()}
+          >
             Cancelar
           </button>
           <button className="button" type="submit">

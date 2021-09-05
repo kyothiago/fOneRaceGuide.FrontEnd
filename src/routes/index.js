@@ -5,7 +5,7 @@ import Home from "../pages/Home";
 
 import Logon from "../pages/Logon";
 import Register from "../pages/Register";
-import UploadCircuito from "../pages/Upload";
+import UpdateCircuito from "../pages/UpdateCircuito";
 import RegisterCircuit from "../pages/NewCircuit";
 import UpdateProfile from "../pages/UpdateProfile";
 import Relatorio from "../pages/Relatorio";
@@ -18,8 +18,12 @@ export default function Routes() {
         <Route path="/register" component={Register} />
         <Route path="/home" component={Home} isPrivate />
         <Route path="/newCircuit" component={RegisterCircuit} isPrivate />
-        <Route path="/circuitUpload" component={UploadCircuito} isPrivate />
-        <Route path="/updateProfile" component={UpdateProfile} isPrivate />
+        <Route
+          path="/UpdateCircuito/:id"
+          component={UpdateCircuito}
+          isPrivate
+        />
+        <Route path="/updateProfile/:id" component={UpdateProfile} isPrivate />
         <Route path="/relatorio" component={Relatorio} isPrivate />
       </Switch>
     </BrowserRouter>

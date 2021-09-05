@@ -11,7 +11,11 @@ export default function Logon() {
   var axiosConfig = {
     headers: {
       Authorization:
-        "x-access-token" + localStorage.getItem("token", "refreshToken"),
+        "x-access-token" +
+        localStorage.getItem(
+          "@formulaone:JWT_TOKEN",
+          "@formulaone:refreshToken"
+        ),
     },
   };
   const [login, setLogin] = useState("");
@@ -35,7 +39,11 @@ export default function Logon() {
       localStorage.setItem("@formulaone:JWT_TOKEN", token);
       localStorage.setItem("@formulaone:refreshToken", refreshToken);
       axiosConfig.headers.Authorization =
-        "x-access-token" + localStorage.getItem("token", "refreshToken");
+        "x-access-token" +
+        localStorage.getItem(
+          "@formulaone:JWT_TOKEN",
+          "@formulaone:refreshToken"
+        );
       history.push("/home");
     } catch (e) {
       alert("Falha ao autenticar usuário");
