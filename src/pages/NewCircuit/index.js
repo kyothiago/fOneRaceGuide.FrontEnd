@@ -11,7 +11,6 @@ export default function RegisterCircuit() {
   const [nameCircuit, setNameCircuit] = useState("");
   const [local, setLocal] = useState("");
   const [country, setCountry] = useState("");
-  const [time, setTime] = useState("");
   const [urlCircuit, setUrlCircuit] = useState("");
   const [photo, setPhoto] = useState([]);
 
@@ -22,7 +21,6 @@ export default function RegisterCircuit() {
     uploadPhoto.append("nameCircuit", nameCircuit);
     uploadPhoto.append("local", local);
     uploadPhoto.append("country", country);
-    uploadPhoto.append("time", time);
     uploadPhoto.append("urlCircuit", urlCircuit);
     uploadPhoto.append("photo", photo[0]);
 

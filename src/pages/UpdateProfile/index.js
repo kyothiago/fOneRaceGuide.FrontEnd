@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 
-
 import api from "../../services/api";
 
 import "./styles.css";
-import axios from "axios";
 
 export default function UpdateProfile(props) {
   const { id } = props.match.params;

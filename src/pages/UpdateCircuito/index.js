@@ -11,7 +11,6 @@ export default function UpdateCircuito(props) {
   const [nameCircuit, setNameCircuit] = useState("");
   const [local, setLocal] = useState("");
   const [country, setCountry] = useState("");
-  const [time, setTime] = useState("");
   const [urlCircuit, setUrlCircuit] = useState("");
   const [photo, setPhoto] = useState("");
 
@@ -35,7 +34,6 @@ export default function UpdateCircuito(props) {
       nameCircuit,
       local,
       country,
-      time,
       urlCircuit,
       photo,
     };

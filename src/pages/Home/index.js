@@ -13,8 +13,6 @@ export default function Home() {
   //const [login, setLogin] = useState([]);
   const history = useHistory();
 
-  const [] = useState([]);
-
   const userLogin = localStorage.getItem("@formulaone:login");
   const userId = localStorage.getItem("@formulaone:id");
 
@@ -70,11 +68,15 @@ export default function Home() {
         <Link className="button" to="/newCircuit">
           Cadastrar novo circuito
         </Link>
+        <Link className="button" to="/relatorio">
+          Gerar Relatório
+        </Link>
         <button onClick={handleLogout} type="button">
           <FiPower size={18} color="#FF1801" />
         </button>
+        
       </header>
-
+      
       <h1>Circuitos cadastrados</h1>
 
       <ul>
@@ -93,7 +95,7 @@ export default function Home() {
             <p>{circuit.circuitoUrl}</p>
 
             <strong>Foto do Circuito:</strong>
-            <img src={circuit.circuitoFoto}></img>
+            <img src={circuit.circuitoFoto} alt= "Foto do circuito"></img>
             <button
               className="buttonUpdate"
               type="button"
