@@ -38,11 +38,11 @@ export default function UpdateProfile(props) {
       email,
       celular,
       login,
-      password,
+      password
     };
 
     try {
-      const response = await api.put("/user/:id", data);
+      const response = await api.put(`/user/${id}`, data);
       alert("Alterações salvas com sucesso", response);
 
       history.push("/home");

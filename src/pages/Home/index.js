@@ -16,16 +16,6 @@ export default function Home() {
   const userLogin = localStorage.getItem("@formulaone:login");
   const userId = localStorage.getItem("@formulaone:id");
 
-  /*     useEffect(() => {
-        axios.get('profile', {
-            headers: {
-                Authorization: userLogin
-            }
-        }).then(response => {
-            setLogin(response.data);
-        })
-    }, []);
-*/
   useEffect(() => {
     axios.get("http://localhost:3001/circuit/get").then((response) => {
       setCircuits(response.data);
@@ -36,9 +26,6 @@ export default function Home() {
     try {
       await api.delete(
         `/circuit/delete/${id}`
-        /*    headers: {
-                    Authorization: userLogin,
-                } */
       );
 
       setCircuits(circuits.filter((id) => circuits.circuitoId !== id));
@@ -103,10 +90,6 @@ export default function Home() {
                 () => {
                   history.push("/UpdateCircuito/" + circuit.circuitoId);
                 }
-                // {
-                //   var id = circuit.circuitoId;
-                // }
-                // history.push(`circuitUpload/${id}`);
               }
             >
               <FiEdit size={20} color="#a8a8b3" />
