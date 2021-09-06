@@ -9,19 +9,20 @@ export default function UpdateCircuito(props) {
 
   const history = useHistory();
   const [nameCircuit, setNameCircuit] = useState("");
-  const [local, setLocal] = useState("");
-  const [country, setCountry] = useState("");
   const [urlCircuit, setUrlCircuit] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState([]);
+
+    const uploadPhoto = new FormData();
+    uploadPhoto.append("nameCircuit", nameCircuit);
+    uploadPhoto.append("urlCircuit", urlCircuit);
+    uploadPhoto.append("photo", photo[0]);
+    console.log(photo);
 
   useEffect (() => {
      api.get(`/circuit/${id}`)
     .then(res => {
       setNameCircuit(res.data.circuitoNome)
-      setLocal(res.data.circuitoLocalizacao)
-      setCountry(res.data.circuitoPais)
       setUrlCircuit(res.data.circuitoUrl)
-      setPhoto(res.data.circuitoFoto)
     })
     
   }, [id]);
@@ -30,22 +31,17 @@ export default function UpdateCircuito(props) {
   async function handleRegister(e) {
     e.preventDefault();
 
-    const data = {
-      nameCircuit,
-      local,
-      country,
-      urlCircuit,
-      photo,
-    };
-
-    // try {
-    //   const response = await api.post(`/upload/${id}`, data);
-    //   alert("salvo com sucesso", response);
-
-    //   history.push("/home");
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const response = await api.post(`/circuit/upload/${id}`, uploadPhoto, {
+        headers: {
+          "Content-Type": `multipart/form-data; boundary=${uploadPhoto._boundary}`,
+        },
+      });
+      alert("salvo com sucesso", response);
+      history.push("/home");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -61,21 +57,11 @@ export default function UpdateCircuito(props) {
           </Link>
         </section>
 
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleRegister} encType="multipart/form-data">
           <input
             placeholder={nameCircuit}
             name={nameCircuit}
             onChange={(e) => setNameCircuit(e.target.value)}
-          />
-          <input
-            placeholder={local}
-            name={local}
-            onChange={(e) => setLocal(e.target.value)}
-          />
-          <input
-            placeholder={country}
-            name={country}
-            onChange={(e) => setCountry(e.target.value)}
           />
           <input
             placeholder={urlCircuit}
@@ -83,7 +69,6 @@ export default function UpdateCircuito(props) {
             onChange={(e) => setUrlCircuit(e.target.value)}
           />
           <input
-            placeholder={photo}
             type="file"
             name={photo}
             onChange={(e) => setPhoto(e.target.files)}
