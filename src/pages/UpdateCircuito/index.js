@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
@@ -15,6 +14,19 @@ export default function UpdateCircuito(props) {
   const [time, setTime] = useState("");
   const [urlCircuit, setUrlCircuit] = useState("");
   const [photo, setPhoto] = useState("");
+
+  useEffect (async () => {
+    await api.get("/circuit/:id")
+    .then(res => {
+      setNameCircuit(res.dados.circuitoNome),
+      setLocal(res.dados.circuitoLocalizacao),
+      setCountry(res.dados.circuitoPais),
+      setUrlCircuit(res.dados.circuitoUrl),
+      setPhoto(res.dados.circuitoFoto)
+    })
+    
+  }, []);
+  
 
   async function handleRegister(e) {
     e.preventDefault();

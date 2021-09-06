@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
+
 
 import api from "../../services/api";
 
@@ -17,6 +18,18 @@ export default function UpdateProfile(props) {
   const [celular, setCelular] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect (async () => {
+    await api.get("/user/:id")
+    .then(res => {
+      setName(res.dados.usuarioNome),
+      setEmail(res.dados.usuarioEmail),
+      setCelular(res.dados.usuarioCelular),
+      setLogin(res.dados.usuarioLogin),
+      setPassword(res.dados.usuarioSenha)
+    })
+    
+  }, []);
 
   async function handleRegister(e) {
     e.preventDefault();
