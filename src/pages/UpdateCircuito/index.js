@@ -75,7 +75,7 @@ export default function UpdateCircuito(props) {
           />
           <button
             className="buttonCancel"
-            type="submit"
+            type="cancel"
             onClick={() => history.goBack()}
           >
             Cancelar
