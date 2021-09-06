@@ -72,11 +72,6 @@ export default function RegisterCircuit() {
             onChange={(e) => setCountry(e.target.value)}
           />
           <input
-            placeholder="Data Circuito"
-            name={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-          <input
             placeholder="URl do Circuito"
             name={urlCircuit}
             onChange={(e) => setUrlCircuit(e.target.value)}

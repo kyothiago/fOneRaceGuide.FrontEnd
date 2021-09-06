@@ -15,17 +15,17 @@ export default function UpdateCircuito(props) {
   const [urlCircuit, setUrlCircuit] = useState("");
   const [photo, setPhoto] = useState("");
 
-  useEffect (async () => {
-    await api.get("/circuit/:id")
+  useEffect (() => {
+     api.get(`/circuit/${id}`)
     .then(res => {
-      setNameCircuit(res.dados.circuitoNome),
-      setLocal(res.dados.circuitoLocalizacao),
-      setCountry(res.dados.circuitoPais),
-      setUrlCircuit(res.dados.circuitoUrl),
-      setPhoto(res.dados.circuitoFoto)
+      setNameCircuit(res.data.circuitoNome)
+      setLocal(res.data.circuitoLocalizacao)
+      setCountry(res.data.circuitoPais)
+      setUrlCircuit(res.data.circuitoUrl)
+      setPhoto(res.data.circuitoFoto)
     })
     
-  }, []);
+  }, [id]);
   
 
   async function handleRegister(e) {
@@ -65,31 +65,27 @@ export default function UpdateCircuito(props) {
 
         <form onSubmit={handleRegister}>
           <input
-            placeholder="Nome do Circuito"
+            placeholder={nameCircuit}
             name={nameCircuit}
             onChange={(e) => setNameCircuit(e.target.value)}
           />
           <input
-            placeholder="Localização"
+            placeholder={local}
             name={local}
             onChange={(e) => setLocal(e.target.value)}
           />
           <input
-            placeholder="País"
+            placeholder={country}
             name={country}
             onChange={(e) => setCountry(e.target.value)}
           />
           <input
-            placeholder="Data Circuito"
-            name={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
-          <input
-            placeholder="URl do Circuito"
+            placeholder={urlCircuit}
             name={urlCircuit}
             onChange={(e) => setUrlCircuit(e.target.value)}
           />
           <input
+            placeholder={photo}
             type="file"
             name={photo}
             onChange={(e) => setPhoto(e.target.files)}

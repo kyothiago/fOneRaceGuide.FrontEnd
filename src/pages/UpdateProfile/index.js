@@ -6,6 +6,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import api from "../../services/api";
 
 import "./styles.css";
+import axios from "axios";
 
 export default function UpdateProfile(props) {
   const { id } = props.match.params;
@@ -19,17 +20,17 @@ export default function UpdateProfile(props) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect (async () => {
-    await api.get("/user/:id")
+  useEffect (() => {
+    api.get(`/user/${id}`)
     .then(res => {
-      setName(res.dados.usuarioNome),
-      setEmail(res.dados.usuarioEmail),
-      setCelular(res.dados.usuarioCelular),
-      setLogin(res.dados.usuarioLogin),
-      setPassword(res.dados.usuarioSenha)
+      setName(res.data.usuarioNome)
+      setEmail(res.data.usuarioEmail)
+      setCelular(res.data.usuarioCelular)
+      setLogin(res.data.usuarioLogin)
+      setPassword('senha')
     })
     
-  }, []);
+  }, [id]);
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -67,28 +68,28 @@ export default function UpdateProfile(props) {
 
         <form onSubmit={handleRegister}>
           <input
-            placeholder="Login"
+            placeholder={login}
             name={login}
             onChange={(e) => setLogin(e.target.value)}
           />
           <input
-            placeholder="Nome"
+            placeholder={name}
             name={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
             type="email"
-            placeholder="E-mail"
+            placeholder={email}
             name={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            placeholder="Celular"
+            placeholder={celular}
             name={celular}
             onChange={(e) => setCelular(e.target.value)}
           />
           <input
-            placeholder="Senha"
+            placeholder={password}
             name={password}
             type="password"
             onChange={(e) => setPassword(e.target.value)}

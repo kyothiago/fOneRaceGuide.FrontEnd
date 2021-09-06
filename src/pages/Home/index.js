@@ -33,7 +33,7 @@ export default function Home() {
       setCircuits(response.data);
     });
   }, []);
-
+  
   async function handleDeleteCircuit(id) {
     try {
       await api.delete(
@@ -82,7 +82,7 @@ export default function Home() {
           <li key={circuit.circuitoId}>
             <strong>Nome do Circuito:</strong>
             <p>{circuit.circuitoNome}</p>
-
+          {console.log(circuit.circuitoFoto)}
             <strong>Localização:</strong>
             <p>{circuit.circuitoLocalizacao}</p>
 
