@@ -17,8 +17,6 @@ export default function UpdateProfile(props) {
   const [celular, setCelular] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-
-  localStorage.setItem(login)
   
   useEffect (() => {
     api.get(`/user/${id}`)
@@ -52,7 +50,7 @@ export default function UpdateProfile(props) {
       console.log(error);
     }
   }
-
+  localStorage.setItem("@formulaone:login", login)
   return (
     <div className="register-container">
       <div className="content">
