@@ -81,7 +81,7 @@ export default function RegisterCircuit() {
           />
           <button
             className="buttonCancel"
-            type="submit"
+            type="cancel"
             onClick={() => history.goBack()}
           >
             Cancelar
