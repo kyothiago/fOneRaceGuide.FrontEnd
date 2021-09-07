@@ -17,6 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { FiArrowLeft } from "react-icons/fi";
 
 const axios = require("axios");
 const tableIcons = {
@@ -62,9 +63,10 @@ function App() {
     <div className="profile-container">
         <header>
             <img src={logoImg} alt="F1 Race Guide"/>
-                <Link className="button" to="/Home">
-                   Retornar para Home
-                </Link>
+            <Link className="back-link" to="/home">
+            <FiArrowLeft size={16} color="#FF1801" />
+            Voltar para home
+          </Link>
         </header>
 
     <MaterialTable
