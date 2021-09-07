@@ -7,6 +7,7 @@ import api from "../../services/api";
 import "./styles.css";
 
 export default function RegisterCircuit() {
+  const token = localStorage.getItem("@formulaone:JWT_TOKEN")
   const history = useHistory();
   const [nameCircuit, setNameCircuit] = useState("");
   const [local, setLocal] = useState("");
@@ -28,6 +29,7 @@ export default function RegisterCircuit() {
       const response = await api.post("/circuit/add", uploadPhoto, {
         headers: {
           "Content-Type": `multipart/form-data; boundary=${uploadPhoto._boundary}`,
+          'x-access-token': `${token}`
         },
       });
       alert("salvo com sucesso", response);
