@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
-
 import api from "../../services/api";
 
 import "./styles.css";
 
 export default function UpdateProfile(props) {
+  var token = localStorage.getItem("@formulaone:JWT_TOKEN")
   const { id } = props.match.params;
 
   console.log(id);
@@ -42,7 +42,7 @@ export default function UpdateProfile(props) {
     };
 
     try {
-      const response = await api.put(`/user/${id}`, data);
+      const response = await api.put(`/user/${id}`, data, {headers: {'x-access-token': `${token}`}});
       alert("Alterações salvas com sucesso", response);
 
       history.push("/home");

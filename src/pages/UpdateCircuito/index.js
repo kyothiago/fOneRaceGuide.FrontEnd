@@ -4,6 +4,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import api from "../../services/api";
 
 export default function UpdateCircuito(props) {
+  const token = localStorage.getItem("@formulaone:JWT_TOKEN")
   const { id } = props.match.params;
   console.log(id);
 
@@ -35,6 +36,7 @@ export default function UpdateCircuito(props) {
       const response = await api.post(`/circuit/upload/${id}`, uploadPhoto, {
         headers: {
           "Content-Type": `multipart/form-data; boundary=${uploadPhoto._boundary}`,
+          'x-access-token': `${token}`
         },
       });
       alert("salvo com sucesso", response);

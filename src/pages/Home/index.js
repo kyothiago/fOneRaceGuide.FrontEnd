@@ -6,18 +6,18 @@ import api from "../../services/api";
 
 import "./styles.css";
 import logoImg from "../../assets/f1-new-logo.png";
-import axios from "axios";
 
 export default function Home() {
+  const token = localStorage.getItem("@formulaone:JWT_TOKEN")
   const [circuits, setCircuits] = useState([]);
   //const [login, setLogin] = useState([]);
   const history = useHistory();
-
+  
   const userLogin = localStorage.getItem("@formulaone:login");
   const userId = localStorage.getItem("@formulaone:id");
 
   useEffect(() => {
-    axios.get("http://localhost:3001/circuit/get").then((response) => {
+    api.get("/circuit/get").then((response) => {
       setCircuits(response.data);
     });
   }, []);
@@ -25,7 +25,7 @@ export default function Home() {
   async function handleDeleteCircuit(id) {
     try {
       await api.delete(
-        `/circuit/delete/${id}`
+        `/circuit/delete/${id}`, {headers: {'x-access-token': `${token}`}}
       );
 
       setCircuits(circuits.filter((id) => circuits.circuitoId !== id));

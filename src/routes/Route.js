@@ -9,7 +9,7 @@ function RouteWrapper({
   ...rest
 }) {
   const authenticated = localStorage.getItem("@formulaone:JWT_TOKEN");
-
+  
   if (!authenticated && isPrivate) return <Redirect to={redirectTo} />;
 
   return <Route {...rest} render={(props) => <Component {...props} />} />;
