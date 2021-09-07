@@ -29,6 +29,7 @@ export default function Home() {
       );
 
       setCircuits(circuits.filter((id) => circuits.circuitoId !== id));
+      history.go(0);
     } catch (error) {
       alert("Erro ao deletar Circuito, tente novamente");
     }
