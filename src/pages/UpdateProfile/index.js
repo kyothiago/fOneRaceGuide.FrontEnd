@@ -8,7 +8,7 @@ import "./styles.css";
 export default function UpdateProfile(props) {
   var token = localStorage.getItem("@formulaone:JWT_TOKEN")
   const { id } = props.match.params;
-
+  
   console.log(id);
 
   const history = useHistory();
@@ -18,6 +18,8 @@ export default function UpdateProfile(props) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
+  localStorage.setItem(login)
+  
   useEffect (() => {
     api.get(`/user/${id}`)
     .then(res => {
