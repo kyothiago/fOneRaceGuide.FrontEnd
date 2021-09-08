@@ -9,18 +9,23 @@ function RouteWrapper({
   component: Component,
   ...rest
 }) {
-  let authenticated = localStorage.getItem("@formulaone:JWT_TOKEN");
- /*  let refreshToken = localStorage.getItem("@formulaone:refreshToken");
- 
-  api.post("/auth", authenticated, {headers: {'x-access-token': `${refreshToken}`}}).then((response) => {
-  let token = response.data.token;
-  let refreshToken = response.data.refreshToken;
+  let token = localStorage.getItem("@formulaone:JWT_TOKEN");
+  let refreshToken = localStorage.getItem("@formulaone:refreshToken");
+  try{
+  api.post("/auth", token, {headers: {'x-access-token': `${refreshToken}`}})
+  .then((response) => {
+    let token = response.data.token;
+    let refreshToken = response.data.refreshToken;
+    localStorage.setItem("@formulaone:JWT_TOKEN", token);
+    localStorage.setItem("@formulaone:refreshToken", refreshToken);
+   })}
+   catch(err) {
+   token = false;
+   console.log(err)
+   }
+   
 
-  localStorage.setItem("@formulaone:JWT_TOKEN", token);
-  localStorage.setItem("@formulaone:refreshToken", refreshToken);
- }); */
-
-  if (!authenticated && isPrivate) return <Redirect to={redirectTo} />;
+  if (!token && isPrivate) return <Redirect to={redirectTo} />;
 
   return <Route {...rest} render={(props) => <Component {...props} />} />;
 }
