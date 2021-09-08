@@ -20,7 +20,7 @@ export default function UpdateCircuito(props) {
     console.log(photo);
 
   useEffect (() => {
-     api.get(`/circuit/${id}`, {headers: {'x-access-token': `${token}`}})
+     api.get(`/circuit/${id}`)
     .then(res => {
       setNameCircuit(res.data.circuitoNome)
       setUrlCircuit(res.data.circuitoUrl)
