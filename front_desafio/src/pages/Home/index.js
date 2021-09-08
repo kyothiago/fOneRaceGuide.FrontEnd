@@ -83,7 +83,7 @@ export default function Home() {
             <p>{circuit.circuitoUrl}</p>
 
             <strong>Foto do Circuito:</strong>
-            <img src={circuit.circuitoFoto} alt= "Foto do circuito"></img>
+            <p>{circuit.circuitoFoto}</p>
             <button
               className="buttonUpdate"
               type="button"
