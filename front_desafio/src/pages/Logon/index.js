@@ -8,16 +8,6 @@ import f1Logo from "../../assets/f1-new-logo.png";
 import api from "../../services/api";
 
 export default function Logon() {
-  var axiosConfig = {
-    headers: {
-      Authorization:
-        "x-access-token" +
-        localStorage.getItem(
-          "@formulaone:JWT_TOKEN",
-          "@formulaone:refreshToken"
-        ),
-    },
-  };
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
@@ -38,12 +28,6 @@ export default function Logon() {
       localStorage.setItem("@formulaone:id", id);
       localStorage.setItem("@formulaone:JWT_TOKEN", token);
       localStorage.setItem("@formulaone:refreshToken", refreshToken);
-      axiosConfig.headers.Authorization =
-        "x-access-token" +
-        localStorage.getItem(
-          "@formulaone:JWT_TOKEN",
-          "@formulaone:refreshToken"
-        );
       history.push("/home");
     } catch (e) {
       alert("Falha ao autenticar usuário");
