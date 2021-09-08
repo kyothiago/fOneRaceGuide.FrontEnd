@@ -17,7 +17,7 @@ export default function Home() {
   const userId = localStorage.getItem("@formulaone:id");
 
   useEffect(() => {
-    api.get("/circuit/get").then((response) => {
+    api.get("/circuit/get", {headers: {'x-access-token': `${token}`}}).then((response) => {
       setCircuits(response.data);
     });
   }, []);

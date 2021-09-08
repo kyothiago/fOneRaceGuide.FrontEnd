@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Redirect, Route } from "react-router-dom";
+import api from "../services/api";
 
 function RouteWrapper({
   redirectTo,
@@ -8,8 +9,17 @@ function RouteWrapper({
   component: Component,
   ...rest
 }) {
-  const authenticated = localStorage.getItem("@formulaone:JWT_TOKEN");
-  
+  let authenticated = localStorage.getItem("@formulaone:JWT_TOKEN");
+ /*  let refreshToken = localStorage.getItem("@formulaone:refreshToken");
+ 
+  api.post("/auth", authenticated, {headers: {'x-access-token': `${refreshToken}`}}).then((response) => {
+  let token = response.data.token;
+  let refreshToken = response.data.refreshToken;
+
+  localStorage.setItem("@formulaone:JWT_TOKEN", token);
+  localStorage.setItem("@formulaone:refreshToken", refreshToken);
+ }); */
+
   if (!authenticated && isPrivate) return <Redirect to={redirectTo} />;
 
   return <Route {...rest} render={(props) => <Component {...props} />} />;
