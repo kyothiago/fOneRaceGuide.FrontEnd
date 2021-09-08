@@ -8,7 +8,7 @@ import "./styles.css";
 export default function UpdateProfile(props) {
   var token = localStorage.getItem("@formulaone:JWT_TOKEN")
   const { id } = props.match.params;
-
+  
   console.log(id);
 
   const history = useHistory();
@@ -17,9 +17,9 @@ export default function UpdateProfile(props) {
   const [celular, setCelular] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-
+  
   useEffect (() => {
-    api.get(`/user/${id}`)
+    api.get(`/user/${id}`, {headers: {'x-access-token': `${token}`}})
     .then(res => {
       setName(res.data.usuarioNome)
       setEmail(res.data.usuarioEmail)
@@ -50,7 +50,7 @@ export default function UpdateProfile(props) {
       console.log(error);
     }
   }
-
+  localStorage.setItem("@formulaone:login", login)
   return (
     <div className="register-container">
       <div className="content">
