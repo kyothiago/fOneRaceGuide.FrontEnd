@@ -19,7 +19,7 @@ export default function UpdateProfile(props) {
   const [password, setPassword] = useState("");
   
   useEffect (() => {
-    api.get(`/user/${id}`, {headers: {'x-access-token': `${token}`}})
+    api.get(`/user/${id}`)
     .then(res => {
       setName(res.data.usuarioNome)
       setEmail(res.data.usuarioEmail)
