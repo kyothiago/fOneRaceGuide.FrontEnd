@@ -21,10 +21,10 @@ export default function UpdateProfile(props) {
   useEffect (() => {
     api.get(`/user/${id}`)
     .then(res => {
+      setLogin(res.data.usuarioLogin)
       setName(res.data.usuarioNome)
       setEmail(res.data.usuarioEmail)
       setCelular(res.data.usuarioCelular)
-      setLogin(res.data.usuarioLogin)
       setPassword('senha')
     })
     
